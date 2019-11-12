@@ -3,3 +3,8 @@
 ################################################################################
 
 /DesignPatternConsole/bin/Debug/netcoreapp2.2
+/.vs/DesignPatternConsole/v15/Server/sqlite3
+/.vs/DesignPatternConsole/v15/.suo
+/.vs/DesignPatternConsole/DesignTimeBuild
+/.vs/config
+/DesignPatternConsole/obj
