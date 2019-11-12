@@ -8,5 +8,4 @@ namespace DesignPatternConsole.Interfaces.Observer
         void Remove(IObservable observable);
         string GetName();
     }
-
 }

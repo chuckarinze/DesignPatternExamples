@@ -5,5 +5,4 @@
         void SendMessage(string message);
         string ParticipantName { get; set; }
     }
-
 }

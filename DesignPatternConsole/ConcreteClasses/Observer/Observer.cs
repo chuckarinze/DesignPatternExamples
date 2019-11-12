@@ -24,29 +24,13 @@ namespace DesignPatternConsole.ConcreteClasses.Observer
             new Lazy<IList<IObservable>>(() => new List<IObservable>());
 
         private readonly string _observerName;
-        //public Observer(string observerName = "")
-        //{
-        //    if (string.IsNullOrWhiteSpace(observerName))
-        //    {
-        //        _observerName = "Observer: " + DateTime.Now.ToString(CultureInfo.InvariantCulture);
-        //    }
-        //    else
-        //    {
-        //        _observerName = observerName;
-        //    }
-
-        //}
 
         public Observer(IObservable observable, string observerName = "") //: this()
         {
             if (!string.IsNullOrWhiteSpace(observerName))
-            {
                 _observerName = observerName;
-            }
             else
-            {
                 _observerName = "Observer: " + DateTime.Now.ToString(CultureInfo.InvariantCulture);
-            }
             Add(observable);
         }
 
@@ -54,8 +38,6 @@ namespace DesignPatternConsole.ConcreteClasses.Observer
         {
             return _observerName;
         }
-
-
 
         public void Add(IObservable observable)
         {
@@ -65,6 +47,8 @@ namespace DesignPatternConsole.ConcreteClasses.Observer
             {
                 _observables.Value.Add(observable);
                 observable.SomethingHappened += HandleEvent;
+                observable.SomethingHappened += AddObserverableEvent;
+                RunningTotal = _observables.Value.Count;
             }
         }
 
@@ -75,8 +59,10 @@ namespace DesignPatternConsole.ConcreteClasses.Observer
             lock (_observables)
             {
                 observable.SomethingHappened -= HandleEvent;
+                observable.SomethingHappened -= AddObserverableEvent;
                 _observables.Value.Remove(observable);
                 Console.WriteLine("removing  observable  " + observable);
+                RunningTotal = _observables.Value.Count;
             }
         }
 
@@ -85,10 +71,18 @@ namespace DesignPatternConsole.ConcreteClasses.Observer
             for (var i = _observables.Value.Count - 1; i >= 0; i--) Remove(_observables.Value[i]);
         }
 
+        private static int RunningTotal { get; set; }
+
         private static void HandleEvent(object sender, EventArgs args)
         {
-            Console.WriteLine("Event Fired: Something happened to " + sender);
+            Console.WriteLine(" Event Fired: Something happened to " + sender);
+        }
+
+        private static void AddObserverableEvent(object sender, EventArgs args)
+        {
+            var runningTotal = RunningTotal;
+            Console.WriteLine(" Adding observerable fired event on " + sender +
+                              " Note: Running total of observerables: " + runningTotal);
         }
     }
-
 }

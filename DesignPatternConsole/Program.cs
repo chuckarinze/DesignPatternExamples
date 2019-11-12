@@ -9,7 +9,7 @@ namespace DesignPatternConsole
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             int num;
             Pattern pattern;
@@ -75,6 +75,8 @@ namespace DesignPatternConsole
                         observable.DoSomething();
                         observer.Add(anotherObservable);
                         anotherObservable.DoSomething();
+                        observer.Remove(observable);
+                        observer.Remove(anotherObservable);
                     }
 
                     break;

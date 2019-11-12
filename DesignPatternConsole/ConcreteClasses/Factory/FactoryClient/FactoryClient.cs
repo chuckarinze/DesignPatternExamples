@@ -5,7 +5,7 @@ namespace DesignPatternConsole.ConcreteClasses.Factory.FactoryClient
     internal class FactoryClient
     {
         public void EnergizeStarShipClient()
-        { 
+        {
             Console.WriteLine("App: Launched with the ConcreteCreator1.");
             ClientCode(new ConcreteCreator1());
 

@@ -6,5 +6,4 @@ namespace DesignPatternConsole.Interfaces.Observer
     {
         event EventHandler SomethingHappened;
     }
-
 }

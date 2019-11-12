@@ -33,6 +33,5 @@ namespace DesignPatternConsole.ConcreteClasses.Factory
 
             return result;
         }
-
     }
 }
